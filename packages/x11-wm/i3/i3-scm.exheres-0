@@ -1,0 +1,29 @@
+# Copyright 2011-2020 Quentin "Sardem FF7" Glidic <sardemff7@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+SCM_REPOSITORY="https://github.com/i3/${PN}"
+: ${SCM_BRANCH:=next}
+
+require scm-git
+require i3
+
+UPSTREAM_DOCUMENTATION="
+    (
+        https://build.i3wm.org/docs/               [[ description = [ Development version documentation list ] ]]
+        https://build.i3wm.org/docs/userguide.html [[ description = [ Development version user’s guide ] ]]
+    ) [[ *lang = en ]]
+"
+
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        app-doc/asciidoc[>=8.3.0]
+        app-text/xmlto
+"
+
+MESON_SRC_CONFIGURE_PARAMS+=(
+    -Ddocs=true
+    -Dmans=true
+)
+
