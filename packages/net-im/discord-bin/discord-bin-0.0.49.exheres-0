@@ -1,5 +1,0 @@
-require discord-bin 
-
-DOWNLOADS="https://dl.discordapp.net/apps/linux/${PV}/discord-${PV}.tar.gz"
-PLATFORMS="~amd64"
-
