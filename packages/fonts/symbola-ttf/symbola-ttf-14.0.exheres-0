@@ -1,0 +1,40 @@
+FONT="Symbola"
+
+require xfont
+
+SUMMARY="Font for symbol blocks of the Unicode Standard"
+HOMEPAGE+="https://dn-works.com/ufas/"
+
+DOWNLOADS="https://dn-works.com/wp-content/uploads/2021/UFAS121921/Symbola.pdf"
+
+LICENCES="custom"
+SLOT="0"
+PLATFORMS="~amd64 ~armv8"
+MYOPTIONS=""
+
+RESTRICT="test"
+
+WORK="${WORKBASE}"
+
+DEPENDENCIES="
+    build:
+        app-text/poppler
+        media-gfx/fontforge
+"
+
+src_prepare() {
+    edo pdfdetach -saveall ${FETCHEDDIR}/"${FONT}.pdf" -o ${WORK}
+}
+
+src_compile() {
+    edo fontforge -script ${FILES}/odt-to-ttf.pe ${FONT}.otf
+}
+
+src_install() {
+    insinto /usr/share/fonts/X11/${FONT}
+    doins "${FONT}.ttf"
+    
+    fix_fonts
+
+    emagicdocs
+}
