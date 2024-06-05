@@ -38,7 +38,11 @@ DEPENDENCIES="
         x11-libs/libXrender
         x11-libs/libXScrnSaver
         x11-libs/libXtst
-            x11-libs/pango
+        x11-libs/pango
+        fonts/noto-cjk
+        fonts/noto-emoji
+        fonts/symbola-ttf
+        fonts/twemoji-ttf
 "
 
 WORK=${WORKBASE}/Discord
