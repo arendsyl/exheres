@@ -1,0 +1,42 @@
+FONT="Twemoji"
+
+require github [ user=JoeBlakeB release=${PV} project=ttf-twemoji-aur pn=${FONT} suffix=ttf ] \
+    xfont
+
+SUMMARY="A simple library that provides standard Unicode emoji support across all platforms."
+HOMEPAGE+="https://jdecked.github.io/twemoji/"
+
+LICENCES="CC-BY 4.0"
+SLOT="0"
+PLATFORMS="~amd64 ~armv8"
+MYOPTIONS=""
+
+RESTRICT="test"
+
+WORK="${WORKBASE}"
+
+DEPENDENCIES=""
+
+src_unpack() {
+    edo mv ${FETCHEDDIR}/"${FONT}-${PV}.ttf" ${WORKBASE}/.
+}
+
+src_compile() {
+    :
+}
+
+src_install() {
+    insinto /usr/share/fonts/X11/${FONT}
+    doins "${FONT}-${PV}.ttf"
+
+    insinto /usr/share/fontconfig/conf.avail
+    doins "${FILES}"/75-twemoji.conf
+
+    # Enable by default
+    dodir /etc/fonts/conf.d
+    dosym /usr/share/fontconfig/conf.avail/75-twemoji.conf /etc/fonts/conf.d/75-twemoji.conf
+
+    fix_fonts
+
+    emagicdocs
+}
