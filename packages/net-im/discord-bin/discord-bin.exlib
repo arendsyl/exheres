@@ -13,8 +13,6 @@ MYOPTIONS=""
 
 DEPENDENCIES="
     run:
-        dev-libs/atk
-        dev-libs/at-spi2-atk
         dev-libs/at-spi2-core
         dev-libs/expat
         dev-libs/glib:2
